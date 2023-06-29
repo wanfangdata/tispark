@@ -144,10 +144,6 @@ class TiAuthIntegrationSuite extends SharedSQLContext {
     } should have message s"SELECT command denied to user $user@% for table $databaseWithPrefix.$table"
   }
 
-  test("Get PD address from TiDB should be correct") {
-    ti.tiAuthorization.get.getPDAddresses() should be(pdAddresses)
-  }
-
   test("Use database and select without privilege should not be passed") {
     the[SQLException] thrownBy spark.sql(
       f"use $databaseWithPrefix") should have message s"Access denied for user $user@% to database ${databaseWithPrefix}"

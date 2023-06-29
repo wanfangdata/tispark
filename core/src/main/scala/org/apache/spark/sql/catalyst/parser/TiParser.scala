@@ -64,7 +64,7 @@ case class TiParser(
 
   def updateMetaCatalog: Unit = {
     val meta = getOrElseInitTiCatalog.meta.get
-    val timeStamp = TiUtil.getTiDBSnapshot(sparkSession)
+    val timeStamp = TiUtil.getTiDBSnapshot
     val catalog = if (timeStamp.isEmpty) {
       tiContext.clientSession.getCatalog
     } else {

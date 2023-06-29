@@ -317,9 +317,9 @@ object TiUtil {
     mutableRow
   }
 
-  def getTiDBSnapshot(sparkSession: SparkSession): Option[TiTimestamp] = {
+  lazy val getTiDBSnapshot: Option[TiTimestamp] = {
     val staleReadTs =
-      sparkSession.conf.get(TiConfigConst.STALE_READ, TiConfigConst.DEFAULT_STALE_READ)
+      SparkSession.active.conf.get(TiConfigConst.STALE_READ, TiConfigConst.DEFAULT_STALE_READ)
     logger.info(s"${TiConfigConst.STALE_READ} = $staleReadTs")
     if (staleReadTs.isEmpty) {
       Option.empty

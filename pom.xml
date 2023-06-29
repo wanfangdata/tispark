@@ -70,15 +70,15 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <protobuf.version>3.1.0</protobuf.version>
-        <spark.version.compile>${spark3_0.version}</spark.version.compile>
-        <spark.version.test>${spark3_0.version}</spark.version.test>
-        <spark.version.release>3.0</spark.version.release>
+        <spark.version.compile>${spark3_3.version}</spark.version.compile>
+        <spark.version.test>${spark3_3.version}</spark.version.test>
+        <spark.version.release>3.3</spark.version.release>
         <spark3_0.version>3.0.3</spark3_0.version>
         <spark3_1.version>3.1.3</spark3_1.version>
         <spark3_2.version>3.2.3</spark3_2.version>
         <spark3_3.version>3.3.1</spark3_3.version>
         <scala.binary.version>2.12</scala.binary.version>
-        <scala.version>2.12.10</scala.version>
+        <scala.version>2.12.15</scala.version>
         <scala.version.release>2.12</scala.version.release>
         <!-- for now, not running scalafmt as part of default verify pipeline -->
         <scalafmt.skip>true</scalafmt.skip>
@@ -97,64 +97,64 @@
         <lombok.version>1.18.22</lombok.version>
         <someModule.test.excludes></someModule.test.excludes>
     </properties>
-    <repositories>
-        <repository>
-            <id>gcs-maven-central-mirror</id>
-            <!--
-              Google Mirror of Maven Central, placed first so that it's used instead of flaky Maven Central.
-              See https://storage-download.googleapis.com/maven-central/index.html
-            -->
-            <name>GCS Maven Central mirror</name>
-            <url>https://maven-central.storage-download.googleapis.com/maven2/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <!--
-              This is used as a fallback when the first try fails.
-            -->
-            <id>central</id>
-            <name>Maven Repository</name>
-            <url>https://repo.maven.apache.org/maven2</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>gcs-maven-central-mirror</id>
-            <!--
-              Google Mirror of Maven Central, placed first so that it's used instead of flaky Maven Central.
-              See https://storage-download.googleapis.com/maven-central/index.html
-            -->
-            <name>GCS Maven Central mirror</name>
-            <url>https://maven-central.storage-download.googleapis.com/repos/central/data/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>central</id>
-            <url>https://repo.maven.apache.org/maven2</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>gcs-maven-central-mirror</id>-->
+<!--            &lt;!&ndash;-->
+<!--              Google Mirror of Maven Central, placed first so that it's used instead of flaky Maven Central.-->
+<!--              See https://storage-download.googleapis.com/maven-central/index.html-->
+<!--            &ndash;&gt;-->
+<!--            <name>GCS Maven Central mirror</name>-->
+<!--            <url>https://maven-central.storage-download.googleapis.com/maven2/</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>false</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
+<!--        <repository>-->
+<!--            &lt;!&ndash;-->
+<!--              This is used as a fallback when the first try fails.-->
+<!--            &ndash;&gt;-->
+<!--            <id>central</id>-->
+<!--            <name>Maven Repository</name>-->
+<!--            <url>https://repo.maven.apache.org/maven2</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>false</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
+<!--    </repositories>-->
+<!--    <pluginRepositories>-->
+<!--        <pluginRepository>-->
+<!--            <id>gcs-maven-central-mirror</id>-->
+<!--            &lt;!&ndash;-->
+<!--              Google Mirror of Maven Central, placed first so that it's used instead of flaky Maven Central.-->
+<!--              See https://storage-download.googleapis.com/maven-central/index.html-->
+<!--            &ndash;&gt;-->
+<!--            <name>GCS Maven Central mirror</name>-->
+<!--            <url>https://maven-central.storage-download.googleapis.com/repos/central/data/</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>false</enabled>-->
+<!--            </snapshots>-->
+<!--        </pluginRepository>-->
+<!--        <pluginRepository>-->
+<!--            <id>central</id>-->
+<!--            <url>https://repo.maven.apache.org/maven2</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>false</enabled>-->
+<!--            </snapshots>-->
+<!--        </pluginRepository>-->
+<!--    </pluginRepositories>-->
 
     <distributionManagement>
         <snapshotRepository>
@@ -168,7 +168,7 @@
     </distributionManagement>
 
     <modules>
-        <module>db-random-test</module>
+<!--        <module>db-random-test</module>-->
         <module>tikv-client</module>
         <module>core</module>
         <module>spark-wrapper/spark-3.0</module>

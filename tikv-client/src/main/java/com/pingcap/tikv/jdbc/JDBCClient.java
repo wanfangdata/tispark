@@ -34,8 +34,6 @@ import org.slf4j.LoggerFactory;
 public class JDBCClient {
 
   public static final String SQL_SHOW_GRANTS = "SHOW GRANTS";
-  public static final String GET_PD_ADDRESS =
-      "SELECT `INSTANCE` FROM `INFORMATION_SCHEMA`.`CLUSTER_INFO` WHERE `TYPE` = 'pd'";
   private static final String MYSQL_DRIVER_NAME = "com.mysql.jdbc.Driver";
   private static final String SQL_SHOW_GRANTS_USING_ROLE = "SHOW GRANTS FOR CURRENT_USER USING ";
   private static final String SELECT_CURRENT_USER = "SELECT CURRENT_USER()";
@@ -59,10 +57,6 @@ public class JDBCClient {
     } catch (SQLException e) {
       return Collections.emptyList();
     }
-  }
-
-  public List<String> getPDAddresses() throws SQLException {
-    return query(GET_PD_ADDRESS, (rs, rowNum) -> rs.getString(1));
   }
 
   public String getCurrentUser() throws SQLException {

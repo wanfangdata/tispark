@@ -43,11 +43,8 @@ class TiContext(val sparkSession: SparkSession) extends Serializable with Loggin
   final val conf: SparkConf = sparkSession.sparkContext.conf
   lazy final val tiAuthorization: Option[TiAuthorization] = TiAuthorization.tiAuthorization
   // If enableAuth, get PDAddress from TiDB else from spark conf
-  final val tiConf: TiConfiguration = TiUtil.sparkConfToTiConf(
-    conf,
-    if (TiAuthorization.enableAuth) {
-      Option(tiAuthorization.get.getPDAddresses())
-    } else Option.empty)
+  // wfxxh: no I think we shoule get PDAddress from spark conf always
+  final val tiConf: TiConfiguration = TiUtil.sparkConfToTiConf(conf,Option.empty)
   final val clientSession = ClientSession.getInstance(tiConf)
   lazy val sqlContext: SQLContext = sparkSession.sqlContext
   // GC

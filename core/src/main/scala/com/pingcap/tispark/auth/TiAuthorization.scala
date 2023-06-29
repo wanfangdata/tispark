@@ -116,16 +116,6 @@ case class TiAuthorization private (parameters: Map[String, String], tiConf: TiC
     parsePrivilegeFromRow(input)
   }
 
-  def getPDAddresses(): String = {
-    try {
-      String.join(",", jdbcClient.getPDAddresses)
-    } catch {
-      case e: Throwable =>
-        throw new IllegalArgumentException(
-          "Failed to get pd addresses from TiDB, please make sure user has `PROCESS` privilege on `INFORMATION_SCHEMA`.`CLUSTER_INFO`",
-          e)
-    }
-  }
 
   /**
    * globalPrivs stores privileges of global dimension for the current user.
@@ -374,15 +364,6 @@ object TiAuthorization {
     if (enableAuth && !tiAuth.get.visible(database, "")) {
       throw new SQLException(f"Access denied for user ${tiAuth.get.user} to database ${database}")
     }
-  }
-
-  def authorizeForDescribeTable(
-      table: String,
-      database: String,
-      tiAuth: Option[TiAuthorization]) = {
-    if (enableAuth && !tiAuth.get.visible(database, table))
-      throw new SQLException(
-        f"SELECT command denied to user ${tiAuth.get.user} for table $database.$table")
   }
 
   def authorizeForDelete(

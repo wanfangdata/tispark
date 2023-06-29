@@ -54,19 +54,8 @@ class TiCatalog extends TableCatalog with SupportsNamespaces {
   override def initialize(name: String, options: CaseInsensitiveStringMap): Unit = {
     _name = Some(name)
 
-    val pdAddress: String =
-      if (TiAuthorization.enableAuth) {
-        tiAuthorization.get.getPDAddresses()
-      } else {
-        if (!options.containsKey("pd.addresses") && !options.containsKey("pd.address")) {
-          throw new Exception("missing configuration spark.sql.catalog.tidb_catalog.pd.addresses")
-        }
-        options.getOrDefault("pd.addresses", options.get("pd.address"))
-      }
-
-    logger.info(s"Initialize TiCatalog with name: $name, pd address: $pdAddress")
-    val conf = TiConfiguration.createDefault(pdAddress)
-    TiUtil.sparkConfToTiConfWithoutPD(SparkSession.active.sparkContext.getConf, conf)
+    logger.info(s"Initialize TiCatalog with name: $name")
+    val conf = TiUtil.sparkConfToTiConf(SparkSession.active.sparkContext.getConf, Option.empty)
     val clientSession = ClientSession.getInstance(conf)
     meta = Some(new MetaManager(clientSession.getCatalog))
     this.clientSession = Some(clientSession)
@@ -125,8 +114,6 @@ class TiCatalog extends TableCatalog with SupportsNamespaces {
         case Array(db) => db
         case _ => throw new NoSuchTableException(ident)
       }
-
-    TiAuthorization.authorizeForDescribeTable(ident.name, dbName, tiAuthorization)
 
     val table = meta.get
       .getTable(dbName, ident.name)

@@ -203,36 +203,36 @@
                 </configuration>
             </plugin>
             <!-- Compiler Plug-in -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.6.0</version>
-                <configuration>
-                    <skip>${skipFetchTestData}</skip>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>version imprint</id>
-                        <configuration>
-                            <executable>${basedir}/scripts/version.sh</executable>
-                        </configuration>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>test data fetch</id>
-                        <phase>validate</phase>
-                        <configuration>
-                            <executable>${basedir}/scripts/fetch-test-data.sh</executable>
-                        </configuration>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.codehaus.mojo</groupId>-->
+<!--                <artifactId>exec-maven-plugin</artifactId>-->
+<!--                <version>1.6.0</version>-->
+<!--                <configuration>-->
+<!--                    <skip>${skipFetchTestData}</skip>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>version imprint</id>-->
+<!--                        <configuration>-->
+<!--                            <executable>${basedir}/scripts/version.sh</executable>-->
+<!--                        </configuration>-->
+<!--                        <phase>validate</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>exec</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>test data fetch</id>-->
+<!--                        <phase>validate</phase>-->
+<!--                        <configuration>-->
+<!--                            <executable>${basedir}/scripts/fetch-test-data.sh</executable>-->
+<!--                        </configuration>-->
+<!--                        <goals>-->
+<!--                            <goal>exec</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
