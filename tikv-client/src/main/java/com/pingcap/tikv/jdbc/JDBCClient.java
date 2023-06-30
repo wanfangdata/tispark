@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
 public class JDBCClient {
 
   public static final String SQL_SHOW_GRANTS = "SHOW GRANTS";
-  private static final String MYSQL_DRIVER_NAME = "com.mysql.jdbc.Driver";
+  private static final String MYSQL_DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
   private static final String SQL_SHOW_GRANTS_USING_ROLE = "SHOW GRANTS FOR CURRENT_USER USING ";
   private static final String SELECT_CURRENT_USER = "SELECT CURRENT_USER()";
   private final Logger logger = LoggerFactory.getLogger(getClass().getName());
